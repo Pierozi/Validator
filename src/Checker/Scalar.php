@@ -4,13 +4,18 @@ namespace Plab\Parameter\Checker;
 
 trait Scalar
 {
-    public function isString($value)
+    public static function isString($value)
     {
         return is_string($value);
     }
 
-    public function isBoolean($value)
+    public static function isBoolean($value)
     {
         return is_bool($value);
+    }
+
+    public static function isInteger($value)
+    {
+        return ctype_digit(strval($value));
     }
 }

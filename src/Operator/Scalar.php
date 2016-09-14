@@ -1,0 +1,16 @@
+<?php
+
+namespace Plab\Parameter\Operator;
+
+trait Scalar
+{
+    public static function opNoSpace($value) : bool
+    {
+        return 0 === preg_match('/\s+/', $value);
+    }
+
+    public static function opLen($value) : int
+    {
+        return strlen($value);
+    }
+}
