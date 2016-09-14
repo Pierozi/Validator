@@ -1,6 +1,6 @@
 <?php
 
-namespace Plab\Parameter\Checker;
+namespace Plab\Validator\Checker;
 
 trait Scalar
 {

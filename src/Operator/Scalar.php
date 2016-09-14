@@ -1,6 +1,6 @@
 <?php
 
-namespace Plab\Parameter\Operator;
+namespace Plab\Validator\Operator;
 
 trait Scalar
 {

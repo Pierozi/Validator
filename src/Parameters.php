@@ -1,10 +1,10 @@
 <?php
 
-namespace Plab\Parameter;
+namespace Plab\Validator;
 
 /**
  * Class Parameters
- * @package Plab\Parameter
+ * @package Plab\Validator
  */
 class Parameters implements \Iterator, \Countable
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Plab\Parameter\Converter;
+namespace Plab\Validator\Converter;
 
 use Hoa\Ustring\Ustring;
 

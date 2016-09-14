@@ -1,10 +1,10 @@
 <?php
 
-namespace Plab\Parameter;
+namespace Plab\Validator;
 
 /**
  * Class Parameter
- * @package Plab\Parameter
+ * @package Plab\Validator
  */
 abstract class Parameter
 {
