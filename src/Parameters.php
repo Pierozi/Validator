@@ -48,21 +48,44 @@ class Parameters implements \Iterator, \Countable
         }
     }
 
+    const REPORT_GROUP_EXCEPTION = 100;
+    const REPORT_NO_EXCEPTION = 101;
+
     /**
-     * @return bool
+     * @return mixed
      */
-    public function isValid()
+    public function isValid($report = self::REPORT_GROUP_EXCEPTION)
     {
+        $exceptions = null;
+
         foreach ($this->iterator as $parameter) {
 
-            if (false === $parameter->isValid()) {
+            if (true === $parameter->isValid()) {
+                continue;
+            }
 
-                //TODO we should not stop iteration if we want group hoa exception
+            if (self::REPORT_NO_EXCEPTION === $report) {
                 return false;
+            }
+
+            $key = $parameter->key();
+
+            if (self::REPORT_GROUP_EXCEPTION === $report) {
+
+                if (null === $exceptions) {
+                    $exceptions = new \Hoa\Exception\Group('Validation parameters of has fail.');
+                }
+
+                $exceptions[$key] = new \Hoa\Exception\Idle('Parameter %s are invalid', 0, $key);
             }
         }
 
-        return true;
+        if (null === $exceptions) {
+            return true;
+        }
+
+        $exceptions->send();
+        throw $exceptions;
     }
 
     /**
