@@ -16,11 +16,18 @@ class Parameters implements \Iterator, \Countable
     /**
      * Parameters constructor.
      * @param $parameterClassName
-     * @param array $parameters
+     * @param $parameters, must be Traversable
      * @throws \Exception
      */
-    public function __construct($parameterClassName, Array $parameters)
+    public function __construct($parameterClassName, $parameters)
     {
+        if (false === is_array($parameters)
+            && false === ($parameters instanceof \stdClass)
+            && false === ($parameters instanceof \Traversable)
+        ) {
+            throw new \Exception('Parameters must be an array or traversable object');
+        }
+
         $this->iterator = new \ArrayIterator();
 
         foreach ($parameters as $key => $value) {
