@@ -10,6 +10,7 @@ abstract class Parameter
 {
     const checkersRules = [];
     const converters = [];
+    const mandatory = [];
 
     protected $key;
     protected $value;
@@ -42,6 +43,10 @@ abstract class Parameter
      */
     public function isValid()
     {
+        if (empty($this->value) && empty(static::mandatory[$this->key])) {
+            return true;
+        }
+
         $rule = static::checkersRules[$this->key] ?? null;
 
         if (null === $rule) {
@@ -92,7 +97,7 @@ abstract class Parameter
                 $converter,
                 $this->getMethods('to')
             )) {
-            throw new \Exception('Converter method not found', E_ERROR);
+            throw new \Exception('Converter method '.$converter.' not found', E_ERROR);
         }
 
         return (xcallable($this, $converter))($this->value);
