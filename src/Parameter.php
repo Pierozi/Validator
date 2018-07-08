@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 namespace Plab\Validator;
 
 /**
@@ -27,7 +28,7 @@ abstract class Parameter
      * @param $value
      * @throws \Exception
      */
-    public function __construct($key, $value)
+    public function __construct(string $key, $value)
     {
         $this->key   = $key;
         $this->value = $value;

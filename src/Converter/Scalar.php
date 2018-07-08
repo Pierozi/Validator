@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 namespace Plab\Validator\Converter;
 
 use Hoa\Ustring\Ustring;
@@ -11,7 +12,7 @@ trait Scalar
      * @param $value
      * @return string
      */
-    public static function toString($value) : string
+    public static function toString($value): string
     {
         return '' . $value;
     }
@@ -21,7 +22,7 @@ trait Scalar
      * @param $value
      * @return Ustring
      */
-    public static function toUString($value) : Ustring
+    public static function toUString($value): Ustring
     {
         return new Ustring($value);
     }
@@ -31,7 +32,7 @@ trait Scalar
      * @param $value
      * @return bool
      */
-    public static function toBoolean($value) : bool
+    public static function toBoolean($value): bool
     {
         if ('true' === $value || 1 === $value || 'on' === $value) {
             return true;
@@ -49,7 +50,7 @@ trait Scalar
      * @param $value
      * @return int
      */
-    public static function toInteger($value) : int
+    public static function toInteger($value): int
     {
         return (int)$value;
     }

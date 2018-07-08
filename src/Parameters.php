@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 namespace Plab\Validator;
 
 /**
@@ -8,6 +9,9 @@ namespace Plab\Validator;
  */
 class Parameters implements \Iterator, \Countable
 {
+    const REPORT_GROUP_EXCEPTION = 100;
+    const REPORT_NO_EXCEPTION = 101;
+
     /**
      * @var \ArrayIterator
      */
@@ -19,7 +23,7 @@ class Parameters implements \Iterator, \Countable
      * @param $parameters, must be Traversable
      * @throws \Exception
      */
-    public function __construct($parameterClassName, $parameters)
+    public function __construct($parameterClassName, \Traversable $parameters)
     {
         if (false === is_array($parameters)
             && false === ($parameters instanceof \stdClass)
@@ -31,9 +35,7 @@ class Parameters implements \Iterator, \Countable
         $this->iterator = new \ArrayIterator();
 
         foreach ($parameters as $key => $value) {
-
             if ($value instanceof Parameter) {
-
                 $this->iterator[] = $value;
                 continue;
             }
@@ -48,18 +50,16 @@ class Parameters implements \Iterator, \Countable
         }
     }
 
-    const REPORT_GROUP_EXCEPTION = 100;
-    const REPORT_NO_EXCEPTION = 101;
-
     /**
-     * @return mixed
+     * @param int $report
+     * @return bool
+     * @throws \Hoa\Exception\Group
      */
-    public function isValid($report = self::REPORT_GROUP_EXCEPTION)
+    public function isValid(int $report = self::REPORT_GROUP_EXCEPTION): bool
     {
         $exceptions = null;
 
         foreach ($this->iterator as $parameter) {
-
             if (true === $parameter->isValid()) {
                 continue;
             }
@@ -71,7 +71,6 @@ class Parameters implements \Iterator, \Countable
             $key = $parameter->key();
 
             if (self::REPORT_GROUP_EXCEPTION === $report) {
-
                 if (null === $exceptions) {
                     $exceptions = new \Hoa\Exception\Group('Validation parameters of has fail.');
                 }
@@ -127,7 +126,7 @@ class Parameters implements \Iterator, \Countable
         return $this->iterator->key();
     }
 
-    public function count()
+    public function count(): int
     {
         return $this->iterator->count();
     }
