@@ -1,15 +1,24 @@
 <?php
 
+declare(strict_types=1);
 namespace Plab\Validator\Operator;
 
 trait Scalar
 {
-    public static function opNoSpace($value) : bool
+    /**
+     * @param string $value
+     * @return bool
+     */
+    public static function opNoSpace(string $value): bool
     {
         return 0 === preg_match('/\s+/', $value);
     }
 
-    public static function opLen($value) : int
+    /**
+     * @param string $value
+     * @return int
+     */
+    public static function opLen(string $value): int
     {
         return strlen($value);
     }

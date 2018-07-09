@@ -5,16 +5,23 @@
     { "name": "Pierre Tomasina" }
   ],
   "require": {
-    "php": ">=7.0.0",
+    "php": ">=7.2.0",
     "hoa/ruler": "~2.0",
-    "hoa/ustring": "~4.0"
+    "hoa/ustring": "~4.0",
+    "atoum/atoum": "^3.3",
+    "atoum/stubs": "^2.6"
   },
   "require-dev": {
-    "psy/psysh": "^0.6.1"
+    "phpstan/phpstan": "^0.10.1"
   },
   "autoload": {
     "psr-4": {
       "Plab\\Validator\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Plab\\Validator\\Fixtures\\": "tests/Fixtures"
     }
   }
 }

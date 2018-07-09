@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 namespace Plab\Validator;
 
 /**
@@ -12,7 +13,14 @@ abstract class Parameter
     const converters = [];
     const mandatory = [];
 
+    /**
+     * @var string
+     */
     protected $key;
+
+    /**
+     * @var mixed
+     */
     protected $value;
 
     use Checker\Scalar;
@@ -23,11 +31,11 @@ abstract class Parameter
 
     /**
      * Parameter constructor.
-     * @param $key
-     * @param $value
+     * @param string $key
+     * @param mixed $value
      * @throws \Exception
      */
-    public function __construct($key, $value)
+    public function __construct(string $key, $value)
     {
         $this->key   = $key;
         $this->value = $value;
@@ -43,8 +51,8 @@ abstract class Parameter
      */
     public function isValid()
     {
-        if (empty($this->value) && empty(static::mandatory[$this->key])) {
-            return true;
+        if (null === $this->value || '' === $this->value) {
+            return !in_array($this->key, static::mandatory);
         }
 
         $rule = static::checkersRules[$this->key] ?? null;
@@ -112,7 +120,7 @@ abstract class Parameter
     }
 
     /**
-     * @param $lexeme
+     * @param mixed $lexeme
      * @return array
      */
     public function getMethods($lexeme)
