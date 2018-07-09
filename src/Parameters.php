@@ -19,11 +19,11 @@ class Parameters implements \Iterator, \Countable
 
     /**
      * Parameters constructor.
-     * @param $parameterClassName
-     * @param $parameters, must be Traversable
+     * @param string $parameterClassName
+     * @param \Traversable $parameters, must be Traversable
      * @throws \Exception
      */
-    public function __construct($parameterClassName, \Traversable $parameters)
+    public function __construct(string $parameterClassName, \Traversable $parameters)
     {
         if (false === is_array($parameters)
             && false === ($parameters instanceof \stdClass)

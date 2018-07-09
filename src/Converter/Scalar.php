@@ -9,7 +9,7 @@ trait Scalar
 {
     /**
      * Cast to native php string
-     * @param $value
+     * @param mixed $value
      * @return string
      */
     public static function toString($value): string
@@ -19,7 +19,7 @@ trait Scalar
 
     /**
      * Cast value to Unicode String object served by Hoa\Ustring
-     * @param $value
+     * @param mixed $value
      * @return Ustring
      */
     public static function toUString($value): Ustring
@@ -29,7 +29,7 @@ trait Scalar
 
     /**
      * Cast to native boolean string as web standard
-     * @param $value
+     * @param mixed $value
      * @return bool
      */
     public static function toBoolean($value): bool
@@ -47,7 +47,7 @@ trait Scalar
 
     /**
      * Cast to native integer
-     * @param $value
+     * @param mixed $value
      * @return int
      */
     public static function toInteger($value): int
