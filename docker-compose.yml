@@ -1,5 +1,0 @@
-php:
-  image: plab/docker-php:7.0-fpm
-  volumes:
-    - .:/app
-  command: 'php-fpm'
